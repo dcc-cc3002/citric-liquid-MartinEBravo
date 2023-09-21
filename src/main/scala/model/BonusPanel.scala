@@ -26,10 +26,12 @@ class BonusPanel extends APanel {
   var characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
   var nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
 
+  /** Add a new character to the buffer */
   def addCharacter(player: PlayerCharacter): Unit = {
     characters += player
   }
 
+  /** Delete a character from the buffer */
   def removeCharacter(player: PlayerCharacter): Unit = {
     if (characters.isEmpty) {
       println("There are no characters to remove")
@@ -37,6 +39,7 @@ class BonusPanel extends APanel {
       characters -= player
     }
   }
+  /** Add bonus to the character */
   def bonus(player: PlayerCharacter): Unit = {
     roll = player.rollDice()
     // player.stars += min(roll*Norma,roll*3)
