@@ -130,6 +130,7 @@ class PlayerCharacter(val name: String,
    */
   var Norma: NormX = new NormX(2, 10, 1)
 
+  /**  A method when the chapters end */
   def endChapter(): Boolean = {
     recoveryAmount = recoveryAmount - 1
     true

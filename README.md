@@ -7,6 +7,13 @@ purpose is to serve as an educational tool, teaching foundational programming co
 
 📢 **Note**: This project is purely educational and will not be used for any commercial purposes.
 
+The game is still in developing, in the following items we will describe the updates that the game is going to have
+
+### EG1
+
+
+
+
 ---
 
 ## For Students
