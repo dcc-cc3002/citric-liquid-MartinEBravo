@@ -1,5 +1,12 @@
 package cl.uchile.dcc.citric
-package model
+package model.Panel
+
+import scala.math._
+import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
+import model.Norm.NormX
+
+import scala.collection.mutable.ArrayBuffer
+
 
 /** The `BonusPanel` represents the class of the bonus panels,
  * We have many variables like the characters and the next panels, each one composed of
@@ -13,7 +20,6 @@ package model
  *
  *  - give bonus to the characters
  *
- *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]
@@ -23,26 +29,12 @@ package model
  *  */
 
 class BonusPanel extends APanel {
-  var characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
-  var nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
 
-  /** Add a new character to the buffer */
-  def addCharacter(player: PlayerCharacter): Unit = {
-    characters += player
-  }
-
-  /** Delete a character from the buffer */
-  def removeCharacter(player: PlayerCharacter): Unit = {
-    if (characters.isEmpty) {
-      println("There are no characters to remove")
-    } else {
-      characters -= player
-    }
-  }
   /** Add bonus to the character */
-  def bonus(player: PlayerCharacter): Unit = {
-    roll = player.rollDice()
-    // player.stars += min(roll*Norma,roll*3)
+  def bonus(player: PlayerCharacter): Boolean = {
+    val roll: Int = player.rollDice()
+    val norm: Int = player.Norma.name
+    player.stars = player.stars + min(roll*norm, roll*3)
+    true
   }
-
 }

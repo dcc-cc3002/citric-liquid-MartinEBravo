@@ -1,6 +1,9 @@
 package cl.uchile.dcc.citric
-package model
+package model.Panel
+
+import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
 import scala.collection.mutable.ArrayBuffer
+
 /** The `NeutralPanel` represents the class of the neutral panels,
  * We have many variables like the characters and the next panels, each one composed of
  * Arrays of multiples entities.
@@ -21,16 +24,5 @@ import scala.collection.mutable.ArrayBuffer
  *
  *  */
 class NeutralPanel extends APanel{
-  var characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
-  var nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
-  def addCharacter(player: PlayerCharacter): Unit = {
-    characters += player
-  }
-  def removeCharacter(player: PlayerCharacter): Unit = {
-    if (characters.isEmpty) {
-      println("There are no characters to remove")
-    } else {
-      characters -= player
-    }
-  }
+
 }
