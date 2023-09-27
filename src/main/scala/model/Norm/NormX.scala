@@ -18,7 +18,7 @@ import model.Unities.PlayerCharacter
  * @param stars     The number of stars required to clear this norm.
  * @param victories The number of victories required to clear this norm.
  */
-class NormX(val name: Int, val stars: Int, val victories: Int) extends Norm {
+class NormX(var name: Int, var stars: Int, var victories: Int) extends Norm {
 
   /**
    * Checks whether a player's statistics meet the requirements of this norm.
@@ -27,20 +27,43 @@ class NormX(val name: Int, val stars: Int, val victories: Int) extends Norm {
    * @return `true` if the player meets the norm's requirements, otherwise `false`.
    */
   def normaCheck(player: PlayerCharacter): Boolean = {
-    if (player.stars > stars || player.victories > victories) {
-      true
-    } else {
-      false
+    if (player.objective == "Stars") {
+      if (player.stars > player.Norma.stars){
+        true
+      }
     }
+    else{
+      if (player.victories > player.Norma.victories) {
+        true
+      }
+    }
+    false
   }
 
   /**
-   * Indicates whether the player has cleared this norm.
+   * Indicates whether the player has upgrade his norm.
    *
    * @param player The player character whose progress is being checked.
-   * @return `true` if the player has cleared this norm, always returns `true` in this implementation.
    */
-  def normaClear(player: PlayerCharacter): Boolean = {
-    true
+  def normaClear(player: PlayerCharacter): Unit = {
+    name = name+1
+
+    /** Here we upgrade the level of the Norma */
+    if (name == 3){
+      stars = 30
+      victories = 3
+    }
+    else if (name == 4) {
+      stars = 70
+      victories = 6
+    }
+    else if (name == 5) {
+      stars = 120
+      victories = 10
+    }
+    else if (name == 6) {
+      stars = 200
+      victories = 14
+    }
   }
 }

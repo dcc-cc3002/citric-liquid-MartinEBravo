@@ -15,6 +15,7 @@ class BonusPanelTest extends munit.FunSuite {
   private val attack = 1
   private val defense = 1
   private val evasion = 1
+  private var objective = "Stars"
   private val randomNumberGenerator = new Random(11)
   private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
 
@@ -26,10 +27,14 @@ class BonusPanelTest extends munit.FunSuite {
       attack,
       defense,
       evasion,
+      objective,
       randomNumberGenerator
     )
   }
+  /** We will check if the value of the stars changed correctly*/
   test("A BonusPanel should give bonus correctly"){
-    assert(TestingPanel.bonus(character))
+    TestingPanel.bonus(character)
+    assertEquals(1,character.stars)
+
   }
 }

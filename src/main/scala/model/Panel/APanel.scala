@@ -26,16 +26,14 @@ abstract class APanel extends Panel {
   var nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
 
   /** Add a new character to the buffer */
-  def addCharacter(player: PlayerCharacter): Boolean = {
+  def addCharacter(player: PlayerCharacter): Unit = {
     characters += player
-    true
   }
 
   /** Delete a character from the buffer */
-  def removeCharacter(player: PlayerCharacter): Boolean = {
+  def removeCharacter(player: PlayerCharacter): Unit = {
     if (!characters.isEmpty) {
       characters -= player
     }
-    true
   }
 }

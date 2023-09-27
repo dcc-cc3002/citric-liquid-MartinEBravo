@@ -43,6 +43,7 @@ abstract class AWildUnit extends WildUnit {
    * @return `true` if the player character successfully defeats the wild unit, otherwise `false`.
    */
   def playerDefeat(player: PlayerCharacter): Boolean = {
+    /** For now we are just gonna return a Boolean */
     true
   }
 }

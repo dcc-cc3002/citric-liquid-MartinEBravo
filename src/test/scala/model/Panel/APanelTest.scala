@@ -16,6 +16,7 @@ class APanelTest extends munit.FunSuite {
   private val attack = 1
   private val defense = 1
   private val evasion = 1
+  private var objective = "Stars"
   private val randomNumberGenerator = new Random(11)
   private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
 
@@ -28,6 +29,7 @@ class APanelTest extends munit.FunSuite {
       attack,
       defense,
       evasion,
+      objective,
       randomNumberGenerator
     )
   }
@@ -36,13 +38,12 @@ class APanelTest extends munit.FunSuite {
     assert(TestingPanel.characters.isEmpty)
     assert(TestingPanel.nextPanels.isEmpty)
   }
-
   test("An APanel should add characters correctly") {
-    assert(TestingPanel.addCharacter(character))
+    TestingPanel.addCharacter(character)
     assert(!TestingPanel.characters.isEmpty)
   }
   test("An APanel should remove characters correctly") {
-    assert(TestingPanel.removeCharacter(character))
+    TestingPanel.removeCharacter(character)
     assert(TestingPanel.characters.isEmpty)
 
   }

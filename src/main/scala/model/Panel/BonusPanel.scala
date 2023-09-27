@@ -31,10 +31,11 @@ import scala.collection.mutable.ArrayBuffer
 class BonusPanel extends APanel {
 
   /** Add bonus to the character */
-  def bonus(player: PlayerCharacter): Boolean = {
-    val roll: Int = player.rollDice()
-    val norm: Int = player.Norma.name
-    player.stars = player.stars + min(roll*norm, roll*3)
-    true
+  def bonus(player: PlayerCharacter): Unit = {
+    var roll: Int = player.rollDice()
+    var norm: Int = player.Norma.name
+    // player.stars = player.stars + min(roll*norm, roll*3)
+    /** As we are not focusing on implementation i am just gonna add 1 */
+    player.stars = player.stars + 1
   }
 }

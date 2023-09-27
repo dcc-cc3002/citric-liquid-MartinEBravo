@@ -39,7 +39,7 @@ trait Panel {
     *
     * @param player The player character to add to this panel.
     */
-  def addCharacter(player: PlayerCharacter): Boolean
+  def addCharacter(player: PlayerCharacter): Unit
 
   /** Removes a character from the list of characters currently on this panel.
     *
@@ -47,5 +47,5 @@ trait Panel {
     *
     * @param player The player character to remove from this panel.
     */
-  def removeCharacter(player: PlayerCharacter): Boolean
+  def removeCharacter(player: PlayerCharacter): Unit
 }

@@ -28,10 +28,11 @@ import scala.collection.mutable.ArrayBuffer
 class DropPanel extends APanel {
 
   /** Take stars from the characters */
-  def bonus(player: PlayerCharacter): Boolean = {
+  def bonus(player: PlayerCharacter): Unit = {
     val roll: Int = player.rollDice()
     val Norm: Int = player.Norma.name
-    player.stars = player.stars - roll*Norm
-    true
+    // player.stars = player.stars - roll*Norm
+    /** As we are not focusing on implementation i am just gonna add 1 */
+    player.stars = player.stars + 1
   }
 }

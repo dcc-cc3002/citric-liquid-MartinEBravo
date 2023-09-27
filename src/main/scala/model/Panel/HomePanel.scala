@@ -29,8 +29,10 @@ import scala.collection.mutable.ArrayBuffer
 class HomePanel(val owner: PlayerCharacter) extends APanel {
 
   /** Activation of the panel depending on the player */
-  def activate(player: PlayerCharacter): Boolean = {
-    true
+  def activate(player: PlayerCharacter): Unit = {
+    /** Here the main program will analyze if the player is the owner of the Panel */
+    player.Norma.normaCheck(player)
+    player.HP = player.HP + 1
   }
 }
 

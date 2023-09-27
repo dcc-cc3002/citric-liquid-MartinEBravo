@@ -28,7 +28,9 @@ import scala.util.Random
 class EncounterPanel extends APanel{
 
   /** Start a battle with a random Wild Unit */
-  def battle(player: PlayerCharacter): Boolean = {
-    true
+  def battle(player: PlayerCharacter): Unit = {
+    /** Here the battle will be implemented in the following versions */
+    /** for now just downgrade the HP simulating a fight*/
+    player.HP = player.HP - 1
   }
 }

@@ -44,6 +44,7 @@ class PlayerCharacter(val name: String,
                       val attack: Int,
                       val defense: Int,
                       val evasion: Int,
+                      var objective: String,
                       val randomNumberGenerator: Random = new Random()) extends Character {
 
   /** The current health points (HP) of the player character.
@@ -82,6 +83,7 @@ class PlayerCharacter(val name: String,
    * @return `true` if the operation was successful, `false` if the provided chapter count is negative.
    */
   def beginTourn(Chapters: Int): Boolean = {
+
     if (Chapters < 0){
       false
     }
@@ -108,6 +110,7 @@ class PlayerCharacter(val name: String,
     else {
       victories += 2
     }
+    /** For now we are just gonna return a boolean */
     true
   }
 
@@ -118,6 +121,7 @@ class PlayerCharacter(val name: String,
    * @return `true` if the recovery action was successful, `false` otherwise.
    */
   def recovery(): Boolean = {
+    /** For now we are just gonna return a Boolean */
     if (rollDice() > recoveryAmount) {
       true
     }
@@ -132,7 +136,23 @@ class PlayerCharacter(val name: String,
 
   /**  A method when the chapters end */
   def endChapter(): Boolean = {
+    /** For now we are just gonna return a Boolean */
     recoveryAmount = recoveryAmount - 1
     true
+  }
+
+  /** Change the objective of the character
+   * @param 1 if wants to change it 0 if not
+   * */
+
+  def changeObjective(n: Int): Unit = {
+    if (n == 1){
+      if (objective == "Stars"){
+        objective = "Victories"
+      }
+      else{
+        objective = "Stars"
+      }
+    }
   }
 }

@@ -19,6 +19,7 @@ class NormXTest extends munit.FunSuite {
   private val defense = 1
   private val evasion = 1
   private val randomNumberGenerator = new Random(11)
+  private var objective = "Stars"
   private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
 
   // This method is executed before each `test(...)` method.
@@ -32,6 +33,7 @@ class NormXTest extends munit.FunSuite {
       attack,
       defense,
       evasion,
+      objective,
       randomNumberGenerator
     )
   }
@@ -42,11 +44,28 @@ class NormXTest extends munit.FunSuite {
     assertEquals(norma.victories, victories)
 
   }
-  test("A Norm should check correctly that the character has not a new norm yet") {
+  test("A Norm should check correctly itself") {
     assert(!norma.normaCheck(character))
+
   }
 
   test("A player should clear its norm correctly"){
-      assert(norma.normaClear(character))
+      norma.normaClear(character)
+      assertEquals(3, norma.name)
+      assertEquals(30, norma.stars)
+      assertEquals(3, norma.victories)
+      norma.normaClear(character)
+      assertEquals(4, norma.name)
+      assertEquals(70, norma.stars)
+      assertEquals(6, norma.victories)
+      norma.normaClear(character)
+      assertEquals(5, norma.name)
+      assertEquals(120, norma.stars)
+      assertEquals(10, norma.victories)
+      norma.normaClear(character)
+      assertEquals(6, norma.name)
+      assertEquals(200, norma.stars)
+      assertEquals(14, norma.victories)
+
   }
 }

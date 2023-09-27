@@ -16,6 +16,7 @@ class AWildUnitTest extends munit.FunSuite {
   private val attack2 = 1
   private val defense2 = 1
   private val evasion2 = 1
+  private var objective = "Stars"
   private val randomNumberGenerator = new Random(11)
   private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
 
@@ -27,6 +28,7 @@ class AWildUnitTest extends munit.FunSuite {
       attack2,
       defense2,
       evasion2,
+      objective,
       randomNumberGenerator
     )
   }

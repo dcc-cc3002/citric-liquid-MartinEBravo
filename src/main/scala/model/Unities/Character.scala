@@ -72,4 +72,9 @@ trait Character extends GameUnit {
    * @return `true` if the chapter ends successfully, otherwise `false`.
    */
   def endChapter(): Boolean
+
+  /**
+   * Objective of the character depending of its norm
+   *  */
+  var objective: String
 }

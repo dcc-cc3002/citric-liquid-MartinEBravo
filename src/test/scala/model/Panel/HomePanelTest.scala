@@ -14,6 +14,7 @@ class HomePanelTest extends munit.FunSuite {
   private val attack = 1
   private val defense = 1
   private val evasion = 1
+  private var objective = "Stars"
   private val randomNumberGenerator = new Random(11)
   private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
 
@@ -28,6 +29,7 @@ class HomePanelTest extends munit.FunSuite {
       attack,
       defense,
       evasion,
+      objective,
       randomNumberGenerator
     )
     TestingPanel = new HomePanel(character)
@@ -37,11 +39,13 @@ class HomePanelTest extends munit.FunSuite {
       attack,
       defense,
       evasion,
+      objective,
       randomNumberGenerator
     )
   }
 
   test("A HomePanel should be activated correctly") {
-    assert(TestingPanel.activate(character2))
+    TestingPanel.activate(character2)
+    assertEquals(character2.HP, maxHp+1)
   }
 }

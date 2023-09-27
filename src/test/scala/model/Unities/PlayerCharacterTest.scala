@@ -15,6 +15,7 @@ class PlayerCharacterTest extends munit.FunSuite {
   private val attack = 1
   private val defense = 1
   private val evasion = 1
+  private var objective = "Stars"
   private val randomNumberGenerator = new Random(11)
   /* Add any other constants you need here... */
 
@@ -42,6 +43,7 @@ class PlayerCharacterTest extends munit.FunSuite {
       attack,
       defense,
       evasion,
+      objective,
       new Random(11)
     )
     enemy = new Chicken()
@@ -51,6 +53,7 @@ class PlayerCharacterTest extends munit.FunSuite {
       attack,
       defense,
       evasion,
+      objective,
       randomNumberGenerator
     )
   }
@@ -63,6 +66,7 @@ class PlayerCharacterTest extends munit.FunSuite {
     assertEquals(character.evasion, evasion)
     assertEquals(character.stars, 0)
     assertEquals(character.victories,0)
+    assertEquals(character.objective, "Stars")
     assertEquals(character.recoveryAmount, 6)
     assert(character.Norma.isInstanceOf[NormX])
   }
@@ -84,7 +88,7 @@ class PlayerCharacterTest extends munit.FunSuite {
   // A seed sets a fixed succession of random numbers, so you can know that the next numbers
   // are always the same for the same seed.
   test("A character should be able to roll a dice with a fixed seed") {
-    val other = new PlayerCharacter(name, maxHp, attack, defense, evasion, new Random(11))
+    val other = new PlayerCharacter(name, maxHp, attack, defense, evasion, objective, randomNumberGenerator)
     for (_ <- 1 to 10) {
       assertEquals(character.rollDice(), other.rollDice())
     }
@@ -106,5 +110,11 @@ class PlayerCharacterTest extends munit.FunSuite {
   }
   test("A character should be affected by the end of a chapter"){
     assert(character.endChapter())
+  }
+  test("A character should change its objective correctly"){
+    character.changeObjective(1)
+    assertEquals("Victories",character.objective)
+    character.changeObjective(1)
+    assertEquals("Stars", character.objective)
   }
 }
