@@ -17,15 +17,25 @@ class Chicken extends AWildUnit {
   /**
    * The attack power of the chicken.
    */
-  val attack: Int = -1
+  private val _attack: Int = -1
 
   /**
    * The defense power of the chicken.
    */
-  val defense: Int = -1
+  private val _defense: Int = -1
 
   /**
    * The evasion ability of the chicken.
    */
-  val evasion: Int = 1
+  private val _evasion: Int = 1
+
+  /** Custom getter for _attack. */
+  def attack: Int = _attack
+
+  /** Custom getter for _defense. */
+  def defense: Int = _defense
+
+  /** Custom getter for _evasion. */
+  def evasion: Int = _evasion
 }
+

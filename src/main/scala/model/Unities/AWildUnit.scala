@@ -21,7 +21,23 @@ abstract class AWildUnit extends WildUnit {
   /**
    * The current hit points (HP) of the wild unit, initially set to 3.
    */
-  var HP: Int = 3
+  private var _HP: Int = 3
+
+  /**
+   * Getter for the current hit points (HP) of the wild unit.
+   *
+   * @return The current HP value.
+   */
+  def HP: Int = _HP
+
+  /**
+   * Setter for the current hit points (HP) of the wild unit.
+   *
+   * @param newHP The new HP value to set.
+   */
+  def HP_=(newHP: Int): Unit = {
+    _HP = newHP
+  }
 
   /**
    * Checks whether the wild unit is still alive.
@@ -29,11 +45,7 @@ abstract class AWildUnit extends WildUnit {
    * @return `true` if the wild unit has positive HP and is alive, otherwise `false`.
    */
   def isAlive(): Boolean = {
-    if (HP <= 0) {
-      false
-    } else {
-      true
-    }
+    _HP > 0
   }
 
   /**
@@ -47,3 +59,4 @@ abstract class AWildUnit extends WildUnit {
     true
   }
 }
+

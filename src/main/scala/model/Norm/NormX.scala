@@ -14,11 +14,44 @@ import model.Unities.PlayerCharacter
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  *
- * @param name      The name or identifier of this norm.
- * @param stars     The number of stars required to clear this norm.
- * @param victories The number of victories required to clear this norm.
+ * @param _name      The name or identifier of this norm.
+ * @param _stars     The number of stars required to clear this norm.
+ * @param _victories The number of victories required to clear this norm.
  */
-class NormX(var name: Int, var stars: Int, var victories: Int) extends Norm {
+class NormX(private var _name: Int, private var _stars: Int, private var _victories: Int) extends Norm {
+
+  /** Return the current norma level */
+  def name: Int = _name
+
+  /** Updates the current norma level
+   *
+   * @param newName The new norma level
+   * */
+  def name_(newName: Int): Unit = {
+    _name = newName
+  }
+
+  /** Return the number of stars required to clear this norm */
+  def stars: Int = _stars
+
+  /** Updates the number of stars required to clear this norm
+   *
+   * @param newStars The new number of stars required
+   * */
+  def stars_=(newStars: Int): Unit = {
+    _stars = newStars
+  }
+
+  /** Return the number of victories required to clear this norm */
+  def victories: Int = _victories
+
+  /** Updates the number of victories required to clear this norm
+   *
+   * @param newVictories The new number of victories required
+   * */
+  def victories_=(newVictories: Int): Unit = {
+    _victories = newVictories
+  }
 
   /**
    * Checks whether a player's statistics meet the requirements of this norm.
@@ -41,29 +74,27 @@ class NormX(var name: Int, var stars: Int, var victories: Int) extends Norm {
   }
 
   /**
-   * Indicates whether the player has upgrade his norm.
+   * Indicates whether the player has upgraded their norm.
    *
    * @param player The player character whose progress is being checked.
    */
   def normaClear(player: PlayerCharacter): Unit = {
-    name = name+1
+    _name = _name + 1
 
     /** Here we upgrade the level of the Norma */
-    if (name == 3){
-      stars = 30
-      victories = 3
-    }
-    else if (name == 4) {
-      stars = 70
-      victories = 6
-    }
-    else if (name == 5) {
-      stars = 120
-      victories = 10
-    }
-    else if (name == 6) {
-      stars = 200
-      victories = 14
+    if (_name == 3) {
+      stars_=(30)
+      victories_=(3)
+    } else if (_name == 4) {
+      stars_=(70)
+      victories_=(6)
+    } else if (_name == 5) {
+      stars_=(120)
+      victories_=(10)
+    } else if (_name == 6) {
+      stars_=(200)
+      victories_=(14)
     }
   }
+
 }

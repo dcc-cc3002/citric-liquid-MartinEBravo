@@ -42,8 +42,13 @@ class NormXTest extends munit.FunSuite {
     assertEquals(norma.name, name)
     assertEquals(norma.stars, stars)
     assertEquals(norma.victories, victories)
+  }
+  test("A Norm should have setters"){
+    norma.name_("Hola")
+    norma.stars_(31)
 
   }
+
   test("A Norm should check correctly itself") {
     assert(!norma.normaCheck(character))
 

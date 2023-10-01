@@ -20,17 +20,35 @@ trait Norm {
   /**
    * The name or identifier of the norm.
    */
-  var name: Int
+  private var _name: Int = 0
 
   /**
    * The number of stars required to clear this norm.
    */
-  var stars: Int
+  private var _stars: Int = 0
 
   /**
    * The number of victories required to clear this norm.
    */
-  var victories: Int
+  private var _victories: Int = 0
+
+  /** Getter for the name property */
+  def name: Int = _name
+
+  /** Setter for the name property */
+  def name_=(newName: Int): Unit
+
+  /** Getter for the stars property */
+  def stars: Int = _stars
+
+  /** Setter for the stars property */
+  def stars_=(newStars: Int): Unit
+
+  /** Getter for the victories property */
+  def victories: Int = _victories
+
+  /** Setter for the victories property */
+  def victories_=(newVictories: Int): Unit
 
   /**
    * Checks whether a player character meets the requirements of this norm.
@@ -41,10 +59,9 @@ trait Norm {
   def normaCheck(player: PlayerCharacter): Boolean
 
   /**
-   * Indicates whether the player character has upgrade his norm.
+   * Indicates whether the player character has upgraded their norm.
    *
    * @param player The player character whose progress is being checked.
    */
   def normaClear(player: PlayerCharacter): Unit
 }
-
