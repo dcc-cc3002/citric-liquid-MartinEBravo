@@ -45,7 +45,7 @@ class PlayerCharacter(val _name: String,
                       val _defense: Int,
                       val _evasion: Int,
                       private var _objective: String,
-                      val randomNumberGenerator: Random = new Random()) extends Character {
+                      val randomNumberGenerator: Random = new Random()) extends Character with AUnit {
 
   /** Custom getters for fields */
   def name: String = _name
@@ -143,14 +143,7 @@ class PlayerCharacter(val _name: String,
    * @return `true` if the battle was successful, `false` otherwise.
    */
   def battle(Enemy: GameUnit): Boolean = {
-    if (Enemy.isInstanceOf[WildUnit]) {
-      victories += 1
-    }
-    else {
-      victories += 2
-    }
-    /** For now we are just gonna return a boolean */
-    true
+
   }
 
   private var recoveryAmount: Int = 6

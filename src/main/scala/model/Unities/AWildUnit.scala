@@ -12,7 +12,7 @@ package model.Unities
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  */
-abstract class AWildUnit extends WildUnit {
+abstract class AWildUnit extends WildUnit with AUnit {
   /**
    * The maximum hit points (HP) of the wild unit, which is 3 by default.
    */
