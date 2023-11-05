@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+import cl.uchile.dcc.citric.model.unities.PlayerCharacter
 
-import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
 import scala.collection.mutable.ArrayBuffer
 
 
@@ -25,14 +25,13 @@ import scala.collection.mutable.ArrayBuffer
  *
  *  */
 
-class DropPanel extends APanel {
-
-  /** Take stars from the characters */
-  def bonus(player: PlayerCharacter): Unit = {
-    val roll: Int = player.rollDice()
-    val Norm: Int = player.Norma.name
-    // player.stars = player.stars - roll*Norm
-    /** As we are not focusing on implementation i am just gonna add 1 */
-    player.stars = player.stars + 1
+class DropPanel extends AbstractPanel {
+  /**
+   * Takes stars from the player that lands on the panel.
+   */
+  def apply(player: PlayerCharacter): Unit = {
+    val roll: Int = player.rollDice
+    val Norma: Int = player.norma.normaNumber
+    player.stars = player.stars - roll*Norma
   }
 }

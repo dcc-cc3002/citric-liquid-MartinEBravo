@@ -1,11 +1,7 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
 
-import scala.math._
-import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
-import model.Norm.NormX
-
-import scala.collection.mutable.ArrayBuffer
+import model.unities.PlayerCharacter
 
 
 /** The `BonusPanel` represents the class of the bonus panels,
@@ -28,14 +24,13 @@ import scala.collection.mutable.ArrayBuffer
  *
  *  */
 
-class BonusPanel extends APanel {
-
-  /** Add bonus to the character */
-  def bonus(player: PlayerCharacter): Unit = {
-    var roll: Int = player.rollDice()
-    var norm: Int = player.Norma.name
-    // player.stars = player.stars + min(roll*norm, roll*3)
-    /** As we are not focusing on implementation i am just gonna add 1 */
-    player.stars = player.stars + 1
+class BonusPanel extends AbstractPanel {
+  /**
+   * Gives a bonus to the player that lands on the panel.
+   */
+  def apply(player: PlayerCharacter): Unit = {
+    val roll: Int = player.rollDice
+    val Norma: Int = player.norma.normaNumber
+    player.stars = player.stars + Math.min(roll*Norma, roll*3)
   }
 }

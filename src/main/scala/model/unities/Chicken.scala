@@ -1,5 +1,5 @@
 package cl.uchile.dcc.citric
-package model.Unities
+package model.unities
 
 /**
  * The `Chicken` class represents a specific type of wild unit in the Citric game, which is a chicken.
@@ -12,20 +12,19 @@ package model.Unities
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  */
-class Chicken extends AWildUnit {
+class Chicken extends AbstractWildUnit {
 
   /**
-   * The attack power of the chicken.
+   * Attributes
    */
-  val attack: Int = -1
+  val _name: String = "Chicken"
+  var _hp = 3
+  val _maxHP: Int = 3
+  val _attack: Int = -1
+  val _defense: Int = -1
+  val _evasion: Int = 1
+  val _bonusStars: Int = 3
+  var _stars: Int = 0
 
-  /**
-   * The defense power of the chicken.
-   */
-  val defense: Int = -1
-
-  /**
-   * The evasion ability of the chicken.
-   */
-  val evasion: Int = 1
 }
+

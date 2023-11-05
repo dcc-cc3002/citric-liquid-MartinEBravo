@@ -1,9 +1,8 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+import model.unities.{PlayerCharacter, WildUnit}
 
-import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
-import scala.collection.mutable.ArrayBuffer
-import scala.util.Random
+import scala.annotation.unused
 
 
 /** The `EncounterPanel` represents the class of the encounter panels,
@@ -25,12 +24,11 @@ import scala.util.Random
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  *  */
-class EncounterPanel extends APanel{
+class EncounterPanel(@unused wildUnit: WildUnit) extends AbstractPanel{
 
-  /** Start a battle with a random Wild Unit */
-  def battle(player: PlayerCharacter): Unit = {
-    /** Here the battle will be implemented in the following versions */
-    /** for now just downgrade the HP simulating a fight*/
-    player.HP = player.HP - 1
+  /**
+   * Starts a battle with the player that lands on the panel.
+   */
+  def apply(@unused player: PlayerCharacter): Unit = {
   }
 }

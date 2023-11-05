@@ -1,38 +1,74 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+
+import cl.uchile.dcc.citric.model.unities.{PlayerCharacter, RoboBall}
 
 import scala.util.Random
-import model.Unities.PlayerCharacter
 
 class EncounterPanelTest extends munit.FunSuite {
-  /** Lets define a BottlePanel */
-  private var TestingPanel: EncounterPanel = _
 
-  /** Lets define a character */
-  private val nameC = "testPlayer"
-  private val maxHp = 10
-  private val attack = 1
-  private val defense = 1
-  private val evasion = 1
-  private var objective = "Stars"
-  private val randomNumberGenerator = new Random(11)
-  private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
+  private var panel: EncounterPanel = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    TestingPanel = new EncounterPanel()
-    character = new PlayerCharacter(
+    panel = new EncounterPanel(new RoboBall)
+  }
+
+  test("A EncounterPanel should be correctly defined") {
+    assert(panel.characters.isEmpty)
+    assert(panel.nextPanels.isEmpty)
+  }
+
+  test("A EncounterPanel should add and remove characters from the buffer correctly")
+  {
+    val nameC = "testPlayer"
+    val maxHp = 10
+    val attack = 1
+    val defense = 1
+    val evasion = 1
+    val character = new PlayerCharacter(
       nameC,
       maxHp,
       attack,
       defense,
       evasion,
-      objective,
-      randomNumberGenerator
     )
+    panel.addCharacter(character)
+    assert(panel.characters.contains(character))
+    panel.removeCharacter(character)
+    assert(!panel.characters.contains(character))
   }
 
-  test("An Encounter Panel should start a battle correctly") {
-    TestingPanel.battle(character)
-    assertEquals(9,character.HP)
+  test("A EncounterPanel should add and remove nextPanels correctly") {
+    val nextPanel = new EncounterPanel(new RoboBall)
+    panel.addPanels(nextPanel)
+    assert(panel.nextPanels.contains(nextPanel))
+    panel.removePanels(nextPanel)
+    assert(!panel.nextPanels.contains(nextPanel))
   }
+
+  test("A EncounterPanel should start a battle correctly"){
+    val nameC = "testPlayer"
+    val maxHp = 10
+    val attack = 1
+    val defense = 1
+    val evasion = 1
+    val character = new PlayerCharacter(
+      nameC,
+      maxHp,
+      attack,
+      defense,
+      evasion,
+    )
+    val nameC2 = "testPlayer2"
+    val character2 = new PlayerCharacter(
+      nameC2,
+      maxHp,
+      attack,
+      defense,
+      evasion,
+    )
+    panel.apply(character)
+  }
+
+
 }

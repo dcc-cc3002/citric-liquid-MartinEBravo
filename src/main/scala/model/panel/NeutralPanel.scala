@@ -1,8 +1,8 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+import model.unities.PlayerCharacter
 
-import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
-import scala.collection.mutable.ArrayBuffer
+import scala.annotation.unused
 
 /** The `NeutralPanel` represents the class of the neutral panels,
  * We have many variables like the characters and the next panels, each one composed of
@@ -23,6 +23,12 @@ import scala.collection.mutable.ArrayBuffer
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  *  */
-class NeutralPanel extends APanel{
+class NeutralPanel extends AbstractPanel {
+
+  /**
+   * apply the effect of the panel to the player
+   */
+  def apply(@unused player: PlayerCharacter): Unit = {
+  }
 
 }

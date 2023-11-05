@@ -1,40 +1,67 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+import cl.uchile.dcc.citric.model.panel.BonusPanel
+import cl.uchile.dcc.citric.model.unities.PlayerCharacter
 
 import scala.util.Random
-import model.Unities.PlayerCharacter
 
 class BonusPanelTest extends munit.FunSuite {
 
-  /** Lets define a BonusPanel */
-  private var TestingPanel: BonusPanel = _
-
-  /** Lets define a character */
-  private val nameC = "testPlayer"
-  private val maxHp = 10
-  private val attack = 1
-  private val defense = 1
-  private val evasion = 1
-  private var objective = "Stars"
-  private val randomNumberGenerator = new Random(11)
-  private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
+  private var panel: BonusPanel = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    TestingPanel = new BonusPanel()
-    character = new PlayerCharacter(
+    panel = new BonusPanel
+  }
+
+  test("A BonusPanel should be correctly defined") {
+    assert(panel.characters.isEmpty)
+    assert(panel.nextPanels.isEmpty)
+  }
+
+  test("A BonusPanel should add and remove characters from the buffer correctly")
+  {
+    val nameC = "testPlayer"
+    val maxHp = 10
+    val attack = 1
+    val defense = 1
+    val evasion = 1
+    val character = new PlayerCharacter(
       nameC,
       maxHp,
       attack,
       defense,
       evasion,
-      objective,
-      randomNumberGenerator
     )
+    panel.addCharacter(character)
+    assert(panel.characters.contains(character))
+    panel.removeCharacter(character)
+    assert(!panel.characters.contains(character))
   }
-  /** We will check if the value of the stars changed correctly*/
-  test("A BonusPanel should give bonus correctly"){
-    TestingPanel.bonus(character)
-    assertEquals(1,character.stars)
 
+  test("A BonusPanel should add and remove nextPanels correctly") {
+    val nextPanel = new BonusPanel
+    panel.addPanels(nextPanel)
+    assert(panel.nextPanels.contains(nextPanel))
+    panel.removePanels(nextPanel)
+    assert(!panel.nextPanels.contains(nextPanel))
+  }
+
+  test("A BonusPanel should give bonus correctly")
+  {
+    val nameC = "testPlayer"
+    val maxHp = 10
+    val attack = 1
+    val defense = 1
+    val evasion = 1
+    val character = new PlayerCharacter(
+      nameC,
+      maxHp,
+      attack,
+      defense,
+      evasion,
+    )
+    panel.addCharacter(character)
+    panel.apply(character)
+    assert(character.stars > 0)
   }
 }

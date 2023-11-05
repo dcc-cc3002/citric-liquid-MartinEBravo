@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+import model.unities.PlayerCharacter
 
-import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
 import scala.collection.mutable.ArrayBuffer
 
 /** Represents a single cell on a board, known as a Panel.
@@ -17,35 +17,20 @@ import scala.collection.mutable.ArrayBuffer
   */
 trait Panel {
 
-  /** Array of the characters currently positioned on this panel.
-    *
-    * In the game, multiple characters might be on the same panel at once, e.g., if multiple players
-    * land on the same space.
-    */
-  val characters: ArrayBuffer[PlayerCharacter]
+  /** Getters and Setters */
+  def characters: ArrayBuffer[PlayerCharacter]
+  def nextPanels: ArrayBuffer[Panel]
 
-  /** An array of panels that are directly connected to this one.
-   *
-   * In the context of the game, multiple routes or paths may exist, this could represent the
-   * possible next steps a player might take after being on this panel.
-   *
-   * @return a List of Panel instances that are adjacent or connected to this panel.
-   */
-  var nextPanels: ArrayBuffer[Panel]
-
-  /** Adds a character to the list of characters currently on this panel.
-    *
-    * This might be invoked when a player moves to this panel or starts their turn on it.
-    *
-    * @param player The player character to add to this panel.
-    */
+  /** Adds a new character to the panel. */
   def addCharacter(player: PlayerCharacter): Unit
 
-  /** Removes a character from the list of characters currently on this panel.
-    *
-    * This might be invoked when a player moves off this panel.
-    *
-    * @param player The player character to remove from this panel.
-    */
+  /** Removes a character from the panel. */
   def removeCharacter(player: PlayerCharacter): Unit
+
+  /** Adds a new panel to the panel. */
+  def addPanels(panels: Panel): Unit
+
+  /** Removes a panel from the panel. */
+  def removePanels(panels: Panel): Unit
+
 }

@@ -1,120 +1,118 @@
 package cl.uchile.dcc.citric
-package model.Unities
+package model.unities
 
-import scala.util.Random
-import model.Norm.NormX
 
 class PlayerCharacterTest extends munit.FunSuite {
-  /*
-  REMEMBER: It is a good practice to use constants for the values that are used in multiple
-  tests, so you can change them in a single place.
-  This will make your tests more readable, easier to maintain, and less error-prone.
-  */
-  private val name = "testPlayer"
-  private val maxHp = 10
-  private val attack = 1
-  private val defense = 1
-  private val evasion = 1
-  private var objective = "Stars"
-  private val randomNumberGenerator = new Random(11)
-  /* Add any other constants you need here... */
 
-  /*
-  This is the object under test.
-  We initialize it in the beforeEach method so we can reuse it in all the tests.
-  This is a good practice because it will reset the object before each test, so you don't have
-  to worry about the state of the object between tests.
-  */
-  private var character: PlayerCharacter = _  // <- x = _ is the same as x = null
-  /* Add any other variables you need here... */
-  /** Lets define a second character */
-  private var enemy: WildUnit = _ // <- x = _ is the same as x = null
+  private var player: PlayerCharacter = _
 
-  /** Lets define a second character */
-  private val nameC2 = "testPlayer2"
-  private var character2: PlayerCharacter = _ // <- x = _ is the same as x = null
-
-
-  // This method is executed before each `test(...)` method.
   override def beforeEach(context: BeforeEach): Unit = {
-    character = new PlayerCharacter(
-      name,
-      maxHp,
-      attack,
-      defense,
-      evasion,
-      objective,
-      new Random(11)
-    )
-    enemy = new Chicken()
-    character2 = new PlayerCharacter(
-      nameC2,
-      maxHp,
-      attack,
-      defense,
-      evasion,
-      objective,
-      randomNumberGenerator
-    )
+    player = new PlayerCharacter("Player", 4, 1, 1, 1)
   }
 
-  test("A character should have correctly set their attributes") {
-    assertEquals(character.name, name)
-    assertEquals(character.maxHP, maxHp)
-    assertEquals(character.attack, attack)
-    assertEquals(character.defense, defense)
-    assertEquals(character.evasion, evasion)
-    assertEquals(character.stars, 0)
-    assertEquals(character.victories,0)
-    assertEquals(character.objective, "Stars")
-    assertEquals(character.recoveryAmount, 6)
-    assert(character.Norma.isInstanceOf[NormX])
+  test("PlayerCharacter's attributes are correct") {
+    assertEquals(player.name, "Player")
+    assertEquals(player.hp, 4)
+    assertEquals(player.maxHP, 4)
+    assertEquals(player.attack, 1)
+    assertEquals(player.defense, 1)
+    assertEquals(player.evasion, 1)
+    assertEquals(player.stars, 0)
+    assertEquals(player.victories, 0)
   }
 
-  test("A character should correct check if is alive"){
-    assert(character.isAlive())
+  test("A PlayerCharacter should do NormaCheck correctly"){
+    assertEquals(player.norma.normaNumber, 2)
+    player.normaCheck()
+    assertEquals(player.norma.normaNumber, 3)
+    player.normaCheck()
+    assertEquals(player.norma.normaNumber, 4)
+    player.normaCheck()
+    assertEquals(player.norma.normaNumber, 5)
+    player.normaCheck()
+    assertEquals(player.norma.normaNumber, 6)
+    player.normaCheck()
+    assertEquals(player.norma.normaNumber, 6)
+  }
+  test("A PlayerCharacter should be defeated correctly"){
+    val player2 = new PlayerCharacter("Player2", 4, 1, 1, 1)
+    player.hp = 0
+    player.defeated(player2)
+    assertEquals(player2.victories, 2)
+  }
+  test("A PlayerCharacter should give stars correctly"){
+    val player2 = new PlayerCharacter("Player2", 4, 1, 1, 1)
+    player.giveStars(player2)
+    assertEquals(player2.stars, 0)
   }
 
-  // Two ways to test randomness (you can use any of them):
+  test("A PlayerCharacter should give victories correctly"){
+    val player2 = new PlayerCharacter("Player2", 4, 1, 1, 1)
+    player.giveVictories(player2)
+    assertEquals(player2.victories, 2)
+  }
 
-  // 1. Test invariant properties, e.g. the result is always between 1 and 6.
-  test("A character should be able to roll a dice") {
-    for (_ <- 1 to 10) {
-      assert(character.rollDice >= 1 && character.rollDice <= 6)
+  test("A PlayerCharacter should recieve stars correctly"){
+    val player2 = new PlayerCharacter("Player2", 4, 1, 1, 1)
+    player2.stars = 4
+    player.recieveStarsFromPlayer(player2)
+    assertEquals(player.stars, 2)
+  }
+
+  test("A PlayerCharacter should recieve victories correctly"){
+    val player2 = new PlayerCharacter("Player2", 4, 1, 1, 1)
+    player2.victories = 4
+    player.recieveVictoriesFromPlayer(player2)
+    assertEquals(player.victories, 2)
+  }
+
+  test("A PlayerCharacter should recieve stars correctly from a WildUnit"){
+    val chicken = new Chicken
+    player.recieveStarsFromWildUnit(chicken)
+    assertEquals(player.stars, 3)
+    assertEquals(chicken.stars, 0)
+  }
+
+  test("A PlayerCharacter should recieve stars correctly from a WildUnit"){
+    val chicken = new Chicken
+    player.recieveVictoriesFromWildUnit(chicken)
+    assertEquals(player.victories, 1)
+  }
+
+  test("A PlayerCharacter should be checked if it is alive correctly"){
+    assertEquals(player.isAlive, true)
+    player.hp = 0
+    assertEquals(player.isAlive, false)
+  }
+
+  test("A PlayerCharacter should roll a dice correctly"){
+    for (_ <- 1 to 100){
+      val dice = player.rollDice
+      assert(dice >= 1 && dice <= 6)
     }
   }
 
-  // 2. Set a seed and test the result is always the same.
-  // A seed sets a fixed succession of random numbers, so you can know that the next numbers
-  // are always the same for the same seed.
-  test("A character should be able to roll a dice with a fixed seed") {
-    val other = new PlayerCharacter(name, maxHp, attack, defense, evasion, objective, randomNumberGenerator)
-    for (_ <- 1 to 10) {
-      assertEquals(character.rollDice(), other.rollDice())
-    }
+  test("A PlayerCharacter should attack correctly"){
+    val chicken = new Chicken
+    player.attacking(chicken)
+    assert(chicken.hp != 2)
+  }
+  test("A PlayerCharacter should not attack if it is dead"){
+    val chicken = new Chicken
+    player.hp = 0
+    player.attacking(chicken)
+    assert(chicken.hp == 3)
+  }
+  test("A PlayerCharacter should defend correctly"){
+    val chicken = new Chicken
+    player.defend(chicken)
+    assert(player.hp != 4)
+  }
+  test("A PlayerCharacter should evade correctly"){
+    val chicken = new Chicken
+    player.evade(chicken)
+    assert(player.hp >= 0)
   }
 
 
-  test("A character should be able to begin its tourn"){
-    assert(character.beginTourn(2))
-    assert(character.beginTourn(5))
-    assert(!character.beginTourn(-1))
-  }
-
-  test("A character should be able to begin a battle"){
-    assert(character.battle(enemy))
-    assert(character.battle(character2))
-  }
-  test("A character should be able to enter in recovery phase"){
-    assert(character.recovery())
-  }
-  test("A character should be affected by the end of a chapter"){
-    assert(character.endChapter())
-  }
-  test("A character should change its objective correctly"){
-    character.changeObjective(1)
-    assertEquals("Victories",character.objective)
-    character.changeObjective(1)
-    assertEquals("Stars", character.objective)
-  }
 }

@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+import cl.uchile.dcc.citric.model.unities.PlayerCharacter
 
-import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
 import scala.collection.mutable.ArrayBuffer
 
 
@@ -26,13 +26,18 @@ import scala.collection.mutable.ArrayBuffer
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  *  */
-class HomePanel(val owner: PlayerCharacter) extends APanel {
+class HomePanel(private val _owner: PlayerCharacter) extends AbstractPanel {
 
-  /** Activation of the panel depending on the player */
-  def activate(player: PlayerCharacter): Unit = {
-    /** Here the main program will analyze if the player is the owner of the Panel */
-    player.Norma.normaCheck(player)
-    player.HP = player.HP + 1
+  /**
+   * Get the owner of the panel
+   */
+  def owner: PlayerCharacter = _owner
+
+  /**
+   * Make the NormaCheck effect to the owner
+   */
+  def apply(): Unit = {
+    _owner.normaCheck()
   }
 }
 

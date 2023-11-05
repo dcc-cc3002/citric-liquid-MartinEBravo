@@ -1,5 +1,5 @@
 package cl.uchile.dcc.citric
-package model.Unities
+package model.unities
 
 /**
  * The `RoboBall` class represents a specific type of wild unit in the Citric game, which is a RoboBall.
@@ -13,20 +13,20 @@ package model.Unities
  *
  *
  */
-class RoboBall extends AWildUnit {
+class RoboBall extends AbstractWildUnit {
 
   /**
-   * The attack power of the RoboBall.
+   * Attributes
    */
-  val attack: Int = -1
+  var _hp = 3
+  var _stars = 0
+  val _name: String = "RoboBall"
+  val _maxHP: Int = 3
+  val _attack: Int = -1
+  val _defense: Int = 1
+  val _evasion: Int = -1
+  val _bonusStars: Int = 2
 
-  /**
-   * The defense power of the RoboBall.
-   */
-  val defense: Int = 1
 
-  /**
-   * The evasion ability of the RoboBall.
-   */
-  val evasion: Int = -1
+
 }

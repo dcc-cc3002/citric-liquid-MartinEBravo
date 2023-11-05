@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
+import model.unities.PlayerCharacter
 
-import cl.uchile.dcc.citric.model.unities.PlayerCharacter
 import scala.collection.mutable.ArrayBuffer
 
 /** The `APanel` represents the abstract class of the future panels we are going to construct
@@ -23,16 +23,17 @@ import scala.collection.mutable.ArrayBuffer
  *  */
 abstract class AbstractPanel extends Panel {
 
+  /**
+   * Attributes
+   */
   private var _characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
   private var _nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
 
-  /** Return the characters in the buffer */
-  def characters: Seq[PlayerCharacter] = _characters
-
-  /** Set the characters in the buffer */
-  def characters_=(newCharacters: Seq[PlayerCharacter]): Unit = {
-    _characters = ArrayBuffer.from(newCharacters)
-  }
+  /**
+   * Getters and Setters
+   */
+  def characters: ArrayBuffer[PlayerCharacter] = _characters
+  def nextPanels: ArrayBuffer[Panel] = _nextPanels
 
   /** Add a new character to the buffer */
   def addCharacter(player: PlayerCharacter): Unit = {
@@ -44,11 +45,20 @@ abstract class AbstractPanel extends Panel {
     _characters -= player
   }
 
-  /** Return the next panels */
-  def nextPanels: Seq[Panel] = _nextPanels
-
-  /** Set the next panels */
-  def nextPanels_=(newNextPanels: Seq[Panel]): Unit = {
-    _nextPanels = ArrayBuffer.from(newNextPanels)
+  /**
+   * Add a new panel to the buffer
+   * */
+  def addPanels(panels: Panel): Unit = {
+    _nextPanels += panels
   }
+
+  /**
+   * Delete a panel from the buffer
+   * */
+  def removePanels(panels: Panel): Unit = {
+    _nextPanels -= panels
+  }
+
+
+
 }

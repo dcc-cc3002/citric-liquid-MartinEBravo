@@ -1,8 +1,8 @@
 package cl.uchile.dcc.citric
-package model.Unities
+package model.unities
 
 /**
- * The `AWildUnit` class represents an abstract wild unit in the Citric game.
+ * The `AbstractWildUnit` class represents an abstract wild unit in the Citric game.
  * It extends the `WildUnit` trait and provides a basic implementation of wild units' attributes and behaviors.
  *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
@@ -12,51 +12,88 @@ package model.Unities
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  */
-abstract class AWildUnit extends WildUnit with AUnit {
-  /**
-   * The maximum hit points (HP) of the wild unit, which is 3 by default.
-   */
-  val maxHP: Int = 3
+abstract class AbstractWildUnit extends AbstractUnit with WildUnit {
 
   /**
-   * The current hit points (HP) of the wild unit, initially set to 3.
+   * Attributes
    */
-  private var _HP: Int = 3
+  val _name: String
+  val _attack: Int
+  val _defense: Int
+  val _evasion: Int
+  val _bonusStars: Int
+  var _stars: Int
+  var _hp: Int
+
 
   /**
-   * Getter for the current hit points (HP) of the wild unit.
+   * Getters and Setters
+   */
+  def name: String = _name
+  def maxHP: Int = _maxHP
+  def attack: Int = _attack
+  def defense: Int = _defense
+  def evasion: Int = _evasion
+  def hp: Int = _hp
+  def stars: Int = _stars
+  def stars_=(newStars: Int): Unit = _stars = newStars
+  def bonusStars: Int = _bonusStars
+
+
+
+  /**
+   * Gives the stars to the winner of the battle.
    *
-   * @return The current HP value.
+   * @param winner: The winner of the battle.
    */
-  def HP: Int = _HP
-
-  /**
-   * Setter for the current hit points (HP) of the wild unit.
-   *
-   * @param newHP The new HP value to set.
-   */
-  def HP_=(newHP: Int): Unit = {
-    _HP = newHP
+  def giveStars(winner: GameUnit): Unit = {
+    winner.recieveStarsFromWildUnit(this)
+    stars = 0
   }
 
   /**
-   * Checks whether the wild unit is still alive.
+   * Gives the victories to the winner of the battle.
    *
-   * @return `true` if the wild unit has positive HP and is alive, otherwise `false`.
+   * @param winner: The winner of the battle.
    */
-  def isAlive(): Boolean = {
-    _HP > 0
+  def giveVictories(winner: GameUnit): Unit = {
+    winner.recieveVictoriesFromWildUnit(this)
   }
 
   /**
-   * Represents a player character's defeat of this wild unit.
+   * Recieves the victories from the player character.
    *
-   * @param player The player character defeating the wild unit.
-   * @return `true` if the player character successfully defeats the wild unit, otherwise `false`.
+   * @param player: The player character that lost the battle.
    */
-  def playerDefeat(player: PlayerCharacter): Boolean = {
-    /** For now we are just gonna return a Boolean */
-    true
+  def recieveStarsFromPlayer(player: PlayerCharacter): Unit = {
+    this.stars = this.stars + player.stars/2
+  }
+
+  /**
+   * Recieves the victories from the wild unit.
+   *
+   * @param wildUnit: The wild unit that lost the battle.
+   */
+  def recieveStarsFromWildUnit(wildUnit: WildUnit): Unit = {
+    // WildUnits can't fight each other
+  }
+
+  /**
+   * Recieves the victories from the player character.
+   *
+   * @param player: The player character that lost the battle.
+   */
+  def recieveVictoriesFromPlayer(player: PlayerCharacter): Unit = {
+    // WildUnits can't recieve victories
+  }
+
+  /**
+   * Recieves the victories from the wild unit.
+   *
+   * @param wildUnit: The wild unit that lost the battle.
+   */
+  def recieveVictoriesFromWildUnit(wildUnit: WildUnit): Unit = {
+    // WildUnits can't recieve victories and fight each other
   }
 }
 

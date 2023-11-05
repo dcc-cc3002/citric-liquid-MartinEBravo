@@ -1,38 +1,67 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
+
+import cl.uchile.dcc.citric.model.unities.PlayerCharacter
 
 import scala.util.Random
-import model.Unities.PlayerCharacter
 
 class DropPanelTest extends munit.FunSuite {
-  /** Lets define a DropPanel */
-  private var TestingPanel: DropPanel = _
 
-  /** Lets define a character */
-  private val nameC = "testPlayer"
-  private val maxHp = 10
-  private val attack = 1
-  private val defense = 1
-  private val evasion = 1
-  private var objective = "Stars"
-  private val randomNumberGenerator = new Random(11)
-  private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
+  private var panel: DropPanel = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    TestingPanel = new DropPanel()
-    character = new PlayerCharacter(
+    panel = new DropPanel
+  }
+
+  test("A DropPanel should be correctly defined") {
+    assert(panel.characters.isEmpty)
+    assert(panel.nextPanels.isEmpty)
+  }
+
+  test("A DropPanel should add and remove characters from the buffer correctly")
+  {
+    val nameC = "testPlayer"
+    val maxHp = 10
+    val attack = 1
+    val defense = 1
+    val evasion = 1
+    val character = new PlayerCharacter(
       nameC,
       maxHp,
       attack,
       defense,
       evasion,
-      objective,
-      randomNumberGenerator
     )
+    panel.addCharacter(character)
+    assert(panel.characters.contains(character))
+    panel.removeCharacter(character)
+    assert(!panel.characters.contains(character))
   }
 
-  test("A DropPanel should take bonus correctly") {
-    TestingPanel.bonus(character)
-    assertEquals(1,character.stars)
+  test("A DropPanel should add and remove nextPanels correctly") {
+    val nextPanel = new DropPanel
+    panel.addPanels(nextPanel)
+    assert(panel.nextPanels.contains(nextPanel))
+    panel.removePanels(nextPanel)
+    assert(!panel.nextPanels.contains(nextPanel))
+  }
+
+  test("A DropPanel should takes stars from the player correctly"){
+    val nameC = "testPlayer"
+    val maxHp = 10
+    val attack = 1
+    val defense = 1
+    val evasion = 1
+    val character = new PlayerCharacter(
+      nameC,
+      maxHp,
+      attack,
+      defense,
+      evasion,
+    )
+    val stars = character.stars
+    panel.addCharacter(character)
+    panel.apply(character)
+    assert(character.stars < stars)
   }
 }

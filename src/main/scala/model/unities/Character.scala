@@ -1,12 +1,13 @@
 package cl.uchile.dcc.citric
-package model.Unities
+package model.unities
 
-import model.Norm.NormX
+import model.norma.Norma
 
 /**
  * The `Character` trait represents a game character in the Citric game.
  * It extends the `GameUnit` trait and adds additional properties and
  * behaviors specific to characters.
+ *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]
@@ -17,64 +18,85 @@ import model.Norm.NormX
 trait Character extends GameUnit {
 
   /**
-   * The current number of stars possessed by the character.
+   * Attributes
    */
-  var stars: Int
+  val _attack: Int
+  val _defense: Int
+  val _evasion: Int
+  val _name: String
 
   /**
-   * Rolls a dice to determine outcomes in the game.
+   * Getters and Setters
+   */
+  def stars: Int
+  def norma: Norma
+  def hp: Int
+  def maxHP: Int
+  def attack: Int
+  def defense: Int
+  def evasion: Int
+  def name: String
+  def stars_=(newStars: Int): Unit
+
+
+  def attacking(target: GameUnit): Unit
+  def defendOrEvade(attacker: GameUnit): Unit
+  def defend(attacker: GameUnit): Unit
+  def evade(attacker: GameUnit): Unit
+
+
+  /**
+   * Checks if the unit is alive.
    *
-   * @return The result of rolling the dice as an integer.
+   * @return true if the unit is alive, false otherwise.
    */
-  def rollDice(): Int
+  def isAlive: Boolean
 
   /**
-   * Begins a tournament with a specified number of chapters.
+   * Rolls a dice.
    *
-   * @param Chapters The number of chapters in the tournament.
-   * @return `true` if the tournament was successfully started, otherwise `false`.
+   * @return a random number between 1 and 6.
    */
-  def beginTourn(Chapters: Int): Boolean
+  def rollDice: Int
 
   /**
-   * The current number of victories achieved by the character.
-   */
-  var victories: Int
+   * Gives the stars and victories to the winner of the battle.
+   * */
+  def defeated(winner: GameUnit): Unit
 
   /**
-   * Initiates a battle between the character and an enemy game unit.
-   *
-   * @param Enemy The enemy game unit to battle against.
-   * @return `true` if the battle was successful, otherwise `false`.
+   * Gives the stars to the winner of the battle.
+   * @param winner: The winner of the battle.
    */
-  def battle(Enemy: GameUnit): Boolean
+  def giveStars(winner: GameUnit): Unit
 
   /**
-   * The amount of recovery available to the character.
+   * Gives the victories to the winner of the battle.
+   * @param winner: The winner of the battle.
    */
-  var recoveryAmount: Int
+  def giveVictories(winner: GameUnit): Unit
 
   /**
-   * Attempts to recover the character's health.
-   *
-   * @return `true` if the character successfully recovers, otherwise `false`.
+   * Recieves the stars from the player character.
+   * @param player: The player character that lost the battle.
    */
-  def recovery(): Boolean
+  def recieveStarsFromPlayer(player: PlayerCharacter): Unit
 
   /**
-   * The norma (set of rules) that the character is currently trying to achieve.
+   * Recieves the victories from the wild unit.
+   * @param wildUnit: The wild unit that lost the battle.
    */
-  var Norma: NormX
+  def recieveVictoriesFromWildUnit(wildUnit: WildUnit): Unit
 
   /**
-   * Ends the current chapter in the game.
-   *
-   * @return `true` if the chapter ends successfully, otherwise `false`.
+   * Recieves the stars from the wild unit.
+   * @param wildUnit: The wild unit that lost the battle.
    */
-  def endChapter(): Boolean
+  def recieveStarsFromWildUnit(wildUnit: WildUnit): Unit
 
   /**
-   * Objective of the character depending of its norm
-   *  */
-  var objective: String
+   * Recieves the victories from the player character.
+   * @param player: The player character that lost the battle.
+   */
+  def recieveVictoriesFromPlayer(player: PlayerCharacter): Unit
 }

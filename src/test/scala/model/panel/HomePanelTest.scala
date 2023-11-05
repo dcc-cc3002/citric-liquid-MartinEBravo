@@ -1,51 +1,73 @@
 package cl.uchile.dcc.citric
-package model.Panel
+package model.panel
 
 import scala.util.Random
-import model.Unities.PlayerCharacter
+
+import cl.uchile.dcc.citric.model.unities.PlayerCharacter
 
 class HomePanelTest extends munit.FunSuite {
-  /** Lets define a BottlePanel */
-  private var TestingPanel: HomePanel = _
 
-  /** Lets define a character */
-  private val nameC = "testPlayer"
-  private val maxHp = 10
-  private val attack = 1
-  private val defense = 1
-  private val evasion = 1
-  private var objective = "Stars"
-  private val randomNumberGenerator = new Random(11)
-  private var character: PlayerCharacter = _ // <- x = _ is the same as x = null
-
-  /** Lets define a second character */
-  private val nameC2 = "testPlayer2"
-  private var character2: PlayerCharacter = _ // <- x = _ is the same as x = null
+  private var panel: HomePanel = _
 
   override def beforeEach(context: BeforeEach): Unit = {
-    character = new PlayerCharacter(
+    val nameD = "testOwner"
+    val maxHpD = 10
+    val attackD = 1
+    val defenseD = 1
+    val evasionD = 1
+    val owner = new PlayerCharacter(
+      nameD,
+      maxHpD,
+      attackD,
+      defenseD,
+      evasionD,
+    )
+    panel = new HomePanel(owner)
+  }
+
+  test("A HomePanel should be correctly defined") {
+    assert(panel.characters.isEmpty)
+    assert(panel.nextPanels.isEmpty)
+  }
+
+  test("A HomePanel should add and remove characters from the buffer correctly")
+  {
+    val nameC = "testPlayer"
+    val maxHp = 10
+    val attack = 1
+    val defense = 1
+    val evasion = 1
+    val character = new PlayerCharacter(
       nameC,
       maxHp,
       attack,
       defense,
       evasion,
-      objective,
-      randomNumberGenerator
     )
-    TestingPanel = new HomePanel(character)
-    character2 = new PlayerCharacter(
-      nameC2,
-      maxHp,
-      attack,
-      defense,
-      evasion,
-      objective,
-      randomNumberGenerator
-    )
+    panel.addCharacter(character)
+    assert(panel.characters.contains(character))
+    panel.removeCharacter(character)
+    assert(!panel.characters.contains(character))
   }
 
-  test("A HomePanel should be activated correctly") {
-    TestingPanel.activate(character2)
-    assertEquals(character2.HP, maxHp+1)
+  test("A HomePanel should add and remove nextPanels correctly") {
+    val nextPanel = new HomePanel(panel.owner)
+    panel.addPanels(nextPanel)
+    assert(panel.nextPanels.contains(nextPanel))
+    panel.removePanels(nextPanel)
+    assert(!panel.nextPanels.contains(nextPanel))
   }
+
+  test("A Home Panel should do NormaCheck correctly"){
+    panel.apply()
+    assert(panel.owner.norma.normaNumber == 3)
+    panel.apply()
+    assert(panel.owner.norma.normaNumber == 4)
+    panel.apply()
+    assert(panel.owner.norma.normaNumber == 5)
+    panel.apply()
+    assert(panel.owner.norma.normaNumber == 6)
+
+  }
+
 }
