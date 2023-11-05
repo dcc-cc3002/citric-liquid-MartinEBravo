@@ -37,7 +37,7 @@ abstract class AbstractPanel extends Panel {
 
   /** Add a new character to the buffer */
   def addCharacter(player: PlayerCharacter): Unit = {
-    _characters += player gi
+    _characters += player
   }
 
   /** Delete a character from the buffer */
