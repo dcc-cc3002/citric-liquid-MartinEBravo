@@ -67,6 +67,7 @@ trait GameUnit {
   /**
    * Rolls a dice.
    *
+   *
    * @return a random number between 1 and 6.
    */
   def rollDice: Int

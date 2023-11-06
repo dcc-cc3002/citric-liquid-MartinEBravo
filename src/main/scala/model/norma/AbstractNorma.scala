@@ -5,6 +5,7 @@ package model.norma
  * The `AbstractNorma` class represents a specific type of norm in the game.
  * It defines the requirements for players to meet in terms of stars and victories to clear this norm.
  *
+ *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]

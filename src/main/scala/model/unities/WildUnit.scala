@@ -5,6 +5,7 @@ package model.unities
  * The `WildUnit` trait represents a wild or non-player character unit in the Citric game.
  * It extends the `GameUnit` trait and defines attributes and behaviors specific to wild units.
  *
+ *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]

@@ -8,6 +8,7 @@ import model.norma.Norma
  * It extends the `GameUnit` trait and adds additional properties and
  * behaviors specific to characters.
  *
+ *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]

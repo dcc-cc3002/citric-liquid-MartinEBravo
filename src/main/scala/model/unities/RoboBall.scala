@@ -17,6 +17,7 @@ class RoboBall extends AbstractWildUnit(hp = 3) {
 
   /**
    * Attributes
+   *
    */
   val _name: String = "RoboBall"
   val _maxHP: Int = 3

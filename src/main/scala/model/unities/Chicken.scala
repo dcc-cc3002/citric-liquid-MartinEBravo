@@ -5,6 +5,7 @@ package model.unities
  * The `Chicken` class represents a specific type of wild unit in the Citric game, which is a chicken.
  * It extends the `AWildUnit` class and defines the chicken's attributes such as attack, defense, and evasion.
  *
+ *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]

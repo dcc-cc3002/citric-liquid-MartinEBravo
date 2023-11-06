@@ -16,6 +16,7 @@ class Seagull extends AbstractWildUnit(hp = 3) {
 
   /**
    * Attributes
+   *
    */
   val _name: String = "Seagull"
   val _maxHP: Int = 3
