@@ -30,8 +30,6 @@ abstract class AbstractWildUnit(hp: Int) extends AbstractUnit(_hp=3) with WildUn
   def bonusStars: Int = _bonusStars
 
 
-
-
   /**
    * Gives the stars to the winner of the battle.
    *
