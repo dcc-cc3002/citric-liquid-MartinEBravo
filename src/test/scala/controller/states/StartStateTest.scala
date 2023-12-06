@@ -1,0 +1,22 @@
+package cl.uchile.dcc.citric
+package controller.states
+
+import cl.uchile.dcc.citric.controller.GameController
+import cl.uchile.dcc.citric.controller.states.StartState
+
+class StartStateTest extends munit.FunSuite {
+
+  private var controller: GameController = _
+
+  override def beforeEach(context: BeforeEach): Unit = {
+    controller = new GameController
+    controller.changeState(new StartState(controller))
+  }
+
+  test("A StartState should start the game correctly") {
+    controller.startGame()
+    // Lets see if the array of players is not empty
+    assert(!controller.playersArray.isEmpty)
+    assert(controller.state.isInstanceOf[ChapterState])
+  }
+}

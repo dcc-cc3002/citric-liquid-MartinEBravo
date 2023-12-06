@@ -1,5 +1,8 @@
 package cl.uchile.dcc.citric
-package model.unities
+package model.unities.wildunities
+
+import model.unities.character.PlayerCharacter
+import model.unities.{AbstractUnit, GameUnit}
 
 /**
  * The `AbstractWildUnit` class represents an abstract wild unit in the Citric game.

@@ -1,5 +1,7 @@
 package cl.uchile.dcc.citric
-package model.unities
+package model.unities.wildunities
+
+import model.unities.character.PlayerCharacter
 
 class SeagullTest extends munit.FunSuite {
 
@@ -52,13 +54,6 @@ class SeagullTest extends munit.FunSuite {
     seagull2.stars = 4
     seagull2.giveStars(seagull)
     assertEquals(seagull.stars, 0)
-    seagull2.giveVictories(seagull)
-  }
-
-  test("A Seagull should not recieve victories from a PlayerCharacter"){
-    val player = new PlayerCharacter("Player", 4, 1, 1, 1)
-    player.victories = 4
-    seagull.recieveVictoriesFromPlayer(player)
   }
 
   test("A Seagull should be checked if it is alive correctly") {

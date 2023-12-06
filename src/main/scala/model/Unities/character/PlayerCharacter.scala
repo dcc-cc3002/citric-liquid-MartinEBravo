@@ -1,9 +1,13 @@
   package cl.uchile.dcc.citric
-  package model.unities
+package model.unities.character
 
-  import model.norma.{Norma, Norma2}
+import model.norma.{Norma, Norma2}
+import model.unities.{AbstractUnit, GameUnit}
 
-  import scala.annotation.unused
+import cl.uchile.dcc.citric.controller.GameController
+import cl.uchile.dcc.citric.model.unities.wildunities.WildUnit
+
+import scala.collection.mutable.ListBuffer
 
   /** The `PlayerCharacter` class represents a character or avatar in the game, encapsulating
     * several attributes such as health points, attack strength, defense capability,
@@ -30,7 +34,6 @@
     * @param _attack The player's capability to deal damage to opponents.
     * @param _defense The player's capability to resist or mitigate damage from opponents.
     * @param _evasion The player's skill to completely avoid certain attacks.
-    *
     * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
     * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
     * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]
@@ -43,6 +46,22 @@
                         val _defense: Int,
                         val _evasion: Int)
     extends AbstractUnit(_hp=_maxHP) with Character  {
+
+    /**
+     * Observer
+     * */
+    var observers: ListBuffer[GameController] = ListBuffer.empty
+
+    def registerObserver(observer: GameController): Unit = {
+      observers += observer
+    }
+
+    def notifyObservers(): Unit = {
+      for (observer <- observers) {
+        observer.update(this)
+      }
+    }
+
 
 
     /**
@@ -58,7 +77,7 @@
      */
     def victories: Int = _victories
     def victories_=(newVictories: Int): Unit = {
-      _victories = newVictories
+      _victories = Math.max(newVictories, 0)
     }
     def norma: Norma = _norma
     def norma_=(newNorma: Norma): Unit = {
@@ -70,7 +89,9 @@
     * NormaCheck effect to the player
     */
     def normaCheck(): Unit = {
-      norma = norma.nextNorma
+        if (this.victories >= this.norma.victories || this.stars >= this.norma.stars) {
+          this.norma = this.norma.nextNorma
+        }
     }
 
     /**

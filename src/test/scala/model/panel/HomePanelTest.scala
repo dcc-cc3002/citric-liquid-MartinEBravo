@@ -1,9 +1,9 @@
 package cl.uchile.dcc.citric
 package model.panel
 
-import scala.util.Random
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
 
-import cl.uchile.dcc.citric.model.unities.PlayerCharacter
+import scala.util.Random
 
 class HomePanelTest extends munit.FunSuite {
 
@@ -59,12 +59,17 @@ class HomePanelTest extends munit.FunSuite {
   }
 
   test("A Home Panel should do NormaCheck correctly"){
+    assert(panel.owner.norma.normaNumber == 2)
+    panel.owner.victories = 1
     panel.apply()
     assert(panel.owner.norma.normaNumber == 3)
+    panel.owner.victories = 3
     panel.apply()
     assert(panel.owner.norma.normaNumber == 4)
+    panel.owner.victories = 6
     panel.apply()
     assert(panel.owner.norma.normaNumber == 5)
+    panel.owner.victories = 10
     panel.apply()
     assert(panel.owner.norma.normaNumber == 6)
 

@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
-import model.unities.PlayerCharacter
 
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
 import scala.annotation.unused
 
 /** The `NeutralPanel` represents the class of the neutral panels,

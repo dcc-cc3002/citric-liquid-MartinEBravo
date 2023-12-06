@@ -1,7 +1,8 @@
 package cl.uchile.dcc.citric
 package model.panel
 
-import cl.uchile.dcc.citric.model.unities.{PlayerCharacter, RoboBall}
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
+import cl.uchile.dcc.citric.model.unities.wildunities.RoboBall
 
 import scala.util.Random
 
@@ -68,7 +69,7 @@ class EncounterPanelTest extends munit.FunSuite {
       evasion,
     )
     panel.apply(character)
+    assert(character.stars == 0)
+    assert(character2.stars == 0)
   }
-
-
 }

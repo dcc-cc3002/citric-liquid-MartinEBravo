@@ -1,9 +1,13 @@
 package cl.uchile.dcc.citric
 package model.unities
+
+import model.unities.character.PlayerCharacter
+
+import cl.uchile.dcc.citric.model.unities.wildunities.WildUnit
+
 /**
  * The `GameUnit` trait represents a generic unit in the game.
  * It defines the basic attributes and behavior that a unit can have.
- *
  *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]

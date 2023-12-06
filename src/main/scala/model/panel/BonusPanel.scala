@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
 
-import model.unities.PlayerCharacter
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
 
 
 /** The `BonusPanel` represents the class of the bonus panels,

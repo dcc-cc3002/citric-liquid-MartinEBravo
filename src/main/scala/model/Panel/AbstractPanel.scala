@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
-import model.unities.PlayerCharacter
 
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
 import scala.collection.mutable.ArrayBuffer
 
 /** The `APanel` represents the abstract class of the future panels we are going to construct

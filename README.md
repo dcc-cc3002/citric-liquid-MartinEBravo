@@ -11,7 +11,9 @@ The game is still in developing, in the following items we will describe the upd
 
 ## About the Game
 
-The game has a lot of entities:
+The game has a lot of entities and states:
+
+![Game Diagram](diagram.png)
 
 ### Characters
 

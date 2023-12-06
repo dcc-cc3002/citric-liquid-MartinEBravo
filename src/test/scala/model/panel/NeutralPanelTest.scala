@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
 
-import model.unities.PlayerCharacter
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
 
 class NeutralPanelTest extends munit.FunSuite {
 
@@ -58,5 +58,7 @@ class NeutralPanelTest extends munit.FunSuite {
       evasion,
     )
     panel.apply(character)
+    assertEquals(character.stars, 0)
+    assertEquals(character.victories, 0)
   }
 }

@@ -1,8 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
 
-import cl.uchile.dcc.citric.model.unities.PlayerCharacter
-
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
 import scala.util.Random
 
 class DropPanelTest extends munit.FunSuite {
@@ -59,6 +58,7 @@ class DropPanelTest extends munit.FunSuite {
       defense,
       evasion,
     )
+    character.stars = 100
     val stars = character.stars
     panel.addCharacter(character)
     panel.apply(character)

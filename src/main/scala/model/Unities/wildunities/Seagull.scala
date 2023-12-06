@@ -1,5 +1,5 @@
 package cl.uchile.dcc.citric
-package model.Unities
+package model.unities.wildunities
 
 /**
  * The `Seagull` class represents a specific type of wild unit in the Citric game, which is a Seagull.
@@ -12,30 +12,17 @@ package model.Unities
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  */
-class Seagull extends AWildUnit {
+class Seagull extends AbstractWildUnit(hp = 3) {
 
   /**
-   * The attack power of the Seagull.
+   * Attributes
+   *
    */
-  private val _attack: Int = 1
+  val _name: String = "Seagull"
+  val _maxHP: Int = 3
+  val _attack: Int = 1
+  val _defense: Int = -1
+  val _evasion: Int = -1
+  val _bonusStars: Int = 2
 
-  /**
-   * The defense power of the Seagull.
-   */
-  private val _defense: Int = -1
-
-  /**
-   * The evasion ability of the Seagull.
-   */
-  private val _evasion: Int = -1
-
-  /** Custom getter for _attack. */
-  def attack: Int = _attack
-
-  /** Custom getter for _defense. */
-  def defense: Int = _defense
-
-  /** Custom getter for _evasion. */
-  def evasion: Int = _evasion
 }
-

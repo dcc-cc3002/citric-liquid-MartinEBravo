@@ -1,10 +1,14 @@
 package cl.uchile.dcc.citric
-package model.unities
+package model.unities.character
+
+import model.norma.Norma
+import model.unities.GameUnit
+import cl.uchile.dcc.citric.model.unities.wildunities.WildUnit
 
 /**
- * The `WildUnit` trait represents a wild or non-player character unit in the Citric game.
- * It extends the `GameUnit` trait and defines attributes and behaviors specific to wild units.
- *
+ * The `Character` trait represents a game character in the Citric game.
+ * It extends the `GameUnit` trait and adds additional properties and
+ * behaviors specific to characters.
  *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
@@ -13,7 +17,7 @@ package model.unities
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  */
-trait WildUnit extends GameUnit {
+trait Character extends GameUnit {
 
   /**
    * Attributes
@@ -21,97 +25,80 @@ trait WildUnit extends GameUnit {
   val _attack: Int
   val _defense: Int
   val _evasion: Int
-  val _bonusStars: Int
+  val _name: String
 
   /**
    * Getters and Setters
    */
+  def stars: Int
+  def norma: Norma
+  def hp: Int
+  def maxHP: Int
   def attack: Int
   def defense: Int
   def evasion: Int
-  def bonusStars: Int
-  def stars: Int
+  def name: String
+  def stars_=(newStars: Int): Unit
+
+
+  def attacking(target: GameUnit): Unit
+  def defendOrEvade(attacker: GameUnit): Unit
+  def defend(attacker: GameUnit): Unit
+  def evade(attacker: GameUnit): Unit
+
 
   /**
-   * Rolls a dice and returns the result.
+   * Checks if the unit is alive.
    *
+   * @return true if the unit is alive, false otherwise.
+   */
+  def isAlive: Boolean
+
+  /**
+   * Rolls a dice.
+   *
+   * @return a random number between 1 and 6.
    */
   def rollDice: Int
 
   /**
-   * Attacks a target unit.
-   *
-   * @param target: The unit to be attacked.
-   */
-  def attacking(target: GameUnit): Unit
-
-  /**
-   * Defends or evades an attack from an attacker unit.
-   *
-   * @param attacker: The unit that is attacking.
-   */
-  def defendOrEvade(attacker: GameUnit): Unit
-
-  /**
-   * Defends an attack from an attacker unit.
-   *
-   * @param attacker: The unit that is attacking.
-   */
-  def defend(attacker: GameUnit): Unit
-
-  /**
-   * Evades an attack from an attacker unit.
-   *
-   * @param attacker: The unit that is attacking.
-   */
-  def evade(attacker: GameUnit): Unit
-
-  /**
    * Gives the stars and victories to the winner of the battle.
-   */
+   * */
   def defeated(winner: GameUnit): Unit
 
   /**
    * Gives the stars to the winner of the battle.
-   *
    * @param winner: The winner of the battle.
    */
   def giveStars(winner: GameUnit): Unit
 
   /**
    * Gives the victories to the winner of the battle.
-   *
    * @param winner: The winner of the battle.
    */
   def giveVictories(winner: GameUnit): Unit
 
   /**
-   * Recieves the victories from the player character.
-   *
+   * Recieves the stars from the player character.
    * @param player: The player character that lost the battle.
    */
   def recieveStarsFromPlayer(player: PlayerCharacter): Unit
 
   /**
    * Recieves the victories from the wild unit.
-   *
    * @param wildUnit: The wild unit that lost the battle.
    */
   def recieveVictoriesFromWildUnit(wildUnit: WildUnit): Unit
 
   /**
    * Recieves the stars from the wild unit.
-   *
    * @param wildUnit: The wild unit that lost the battle.
    */
   def recieveStarsFromWildUnit(wildUnit: WildUnit): Unit
 
   /**
    * Recieves the victories from the player character.
-   *
    * @param player: The player character that lost the battle.
    */
   def recieveVictoriesFromPlayer(player: PlayerCharacter): Unit
-
-
 }

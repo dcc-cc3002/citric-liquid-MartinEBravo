@@ -1,5 +1,8 @@
 package cl.uchile.dcc.citric
-package model.unities
+package model.unities.wildunities
+
+import model.unities.character.PlayerCharacter
+
 class RoboBallTest extends munit.FunSuite {
 
   private var roboBall: RoboBall = _
@@ -51,13 +54,6 @@ class RoboBallTest extends munit.FunSuite {
     roboBall2.stars = 4
     roboBall2.giveStars(roboBall)
     assertEquals(roboBall.stars, 0)
-    roboBall2.giveVictories(roboBall)
-  }
-
-  test("A RoboBall should not recieve victories from a PlayerCharacter"){
-    val player = new PlayerCharacter("Player", 4, 1, 1, 1)
-    player.victories = 4
-    roboBall.recieveVictoriesFromPlayer(player)
   }
 
   test("A RoboBall should be checked if it is alive correctly"){

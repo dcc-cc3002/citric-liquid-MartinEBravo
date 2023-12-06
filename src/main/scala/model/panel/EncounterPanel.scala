@@ -1,6 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
-import model.unities.{PlayerCharacter, WildUnit}
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
+import cl.uchile.dcc.citric.model.unities.wildunities.WildUnit
 
 import scala.annotation.unused
 

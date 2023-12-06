@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
-package model.unities
+package model.unities.wildunities
 
-import scala.util.Random
+import model.unities.character.PlayerCharacter
 
 class ChickenTest extends munit.FunSuite {
 
@@ -51,12 +51,6 @@ class ChickenTest extends munit.FunSuite {
     chicken2.stars = 4
     chicken2.giveStars(chicken)
     assertEquals(chicken.stars, 0)
-    chicken2.giveVictories(chicken)
-  }
-  test("A Chicken should not recieve victories from a PlayerCharacter"){
-    val player = new PlayerCharacter("Player", 4, 1, 1, 1)
-    player.victories = 4
-    chicken.recieveVictoriesFromPlayer(player)
   }
   test("A Chicken should be checked if it is alive correctly"){
     assertEquals(chicken.isAlive, true)

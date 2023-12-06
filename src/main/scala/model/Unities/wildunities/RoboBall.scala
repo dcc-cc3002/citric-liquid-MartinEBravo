@@ -1,5 +1,5 @@
 package cl.uchile.dcc.citric
-package model.unities
+package model.unities.wildunities
 
 /**
  * The `RoboBall` class represents a specific type of wild unit in the Citric game, which is a RoboBall.

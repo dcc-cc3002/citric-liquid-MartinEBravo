@@ -1,7 +1,7 @@
 package cl.uchile.dcc.citric
 package model.panel
 import cl.uchile.dcc.citric.model.panel.BonusPanel
-import cl.uchile.dcc.citric.model.unities.PlayerCharacter
+import cl.uchile.dcc.citric.model.unities.character.PlayerCharacter
 
 import scala.util.Random
 

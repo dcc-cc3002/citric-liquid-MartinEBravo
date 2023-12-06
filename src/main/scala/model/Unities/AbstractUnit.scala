@@ -36,12 +36,12 @@ abstract class AbstractUnit(private var _hp: Int) extends GameUnit {
   def evasion: Int = _evasion
   def hp: Int = _hp
   def hp_=(newHP: Int): Unit = {
-    _hp = newHP
+    _hp = Math.max(0, newHP)
   }
 
   def stars: Int = _stars
   def stars_= (newStars: Int): Unit = {
-    _stars = newStars
+    _stars = Math.max(0, newStars)
   }
 
   /**

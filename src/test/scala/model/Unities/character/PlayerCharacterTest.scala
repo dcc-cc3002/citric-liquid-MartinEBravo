@@ -1,5 +1,9 @@
 package cl.uchile.dcc.citric
-package model.unities
+package model.unities.character
+
+import model.unities.wildunities.Chicken
+
+import cl.uchile.dcc.citric.controller.GameController
 
 
 class PlayerCharacterTest extends munit.FunSuite {
@@ -23,14 +27,19 @@ class PlayerCharacterTest extends munit.FunSuite {
 
   test("A PlayerCharacter should do NormaCheck correctly"){
     assertEquals(player.norma.normaNumber, 2)
+    player.victories = 1
     player.normaCheck()
     assertEquals(player.norma.normaNumber, 3)
+    player.victories = 3
     player.normaCheck()
     assertEquals(player.norma.normaNumber, 4)
+    player.victories = 6
     player.normaCheck()
     assertEquals(player.norma.normaNumber, 5)
+    player.victories = 10
     player.normaCheck()
     assertEquals(player.norma.normaNumber, 6)
+    player.victories = 14
     player.normaCheck()
     assertEquals(player.norma.normaNumber, 6)
   }
@@ -113,6 +122,15 @@ class PlayerCharacterTest extends munit.FunSuite {
     player.evade(chicken)
     assert(player.hp >= 0)
   }
-
+  test("Observer should be notified correctly"){
+    // new controller
+    val controller = new GameController
+    // add observer
+    player.registerObserver(controller)
+    //notify observer
+    player.notifyObservers()
+    // check if observer was notified
+    assert(controller.update(player))
+  }
 
 }
