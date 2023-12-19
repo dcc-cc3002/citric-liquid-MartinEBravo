@@ -39,34 +39,73 @@ import model.Norm.NormX
   * @author [[https://github.com/Seivier/ Vicente González B.]]
   * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
   */
-class PlayerCharacter(val name: String,
-                      val maxHP: Int,
-                      val attack: Int,
-                      val defense: Int,
-                      val evasion: Int,
-                      var objective: String,
+class PlayerCharacter(val _name: String,
+                      val _maxHP: Int,
+                      val _attack: Int,
+                      val _defense: Int,
+                      val _evasion: Int,
+                      private var _objective: String,
                       val randomNumberGenerator: Random = new Random()) extends Character {
+
+  /** Custom getters for fields */
+  def name: String = _name
+
+  def maxHP: Int = _maxHP
+
+  def attack: Int = _attack
+
+  def defense: Int = _defense
+
+  def evasion: Int = _evasion
+
 
   /** The current health points (HP) of the player character.
    * If this value reaches or falls below 0, the player character is considered defeated.
    */
-  var HP: Int = maxHP
+  private var _HP: Int = _maxHP
+
+  /** Getter for the current health points (HP) of the player character.
+   *
+   * @return The current HP value.
+   */
+  def HP: Int = _HP
+
+  /** Setter for the current health points (HP) of the player character.
+   *
+   * @param newHP The new HP value to set.
+   */
+  def HP_=(newHP: Int): Unit = {
+    _HP = newHP
+  }
+
+
+
+  /** Getter for the objective of the character.
+   *
+   * @return The current objective.
+   */
+  def objective: String = _objective
+
+  /** Setter for the objective of the character.
+   *
+   * @param newObjective The new objective value to set.
+   */
+  def objective_=(newObjective: String): Unit = {
+    _objective = newObjective
+  }
 
   /** Checks if the player character is alive.
    *
    * @return `true` if the player character's HP is greater than 0, `false` otherwise.
    */
   def isAlive(): Boolean = {
-    if (HP <= 0) {
-      false
-    }
-    else true
+    _HP > 0
   }
 
   /** The number of stars collected by the player character.
    * Stars are typically obtained during gameplay and may have various uses.
    */
-  var stars: Int = 0
+  protected var stars: Int = 0
 
   /** Rolls a dice and returns a value between 1 to 6.
    *
@@ -96,7 +135,7 @@ class PlayerCharacter(val name: String,
   /** The number of victories achieved by the player character.
    * Victories can be obtained through battles in the game.
    */
-  var victories: Int = 0
+  private var victories: Int = 0
 
   /** Engages in a battle with an enemy game unit.
    *
@@ -114,7 +153,7 @@ class PlayerCharacter(val name: String,
     true
   }
 
-  var recoveryAmount: Int = 6
+  private var recoveryAmount: Int = 6
 
   /** Performs a recovery action, typically based on the outcome of rolling a dice.
    *
@@ -134,25 +173,14 @@ class PlayerCharacter(val name: String,
    */
   var Norma: NormX = new NormX(2, 10, 1)
 
-  /**  A method when the chapters end */
+  /** A method when the chapters end */
   def endChapter(): Boolean = {
     /** For now we are just gonna return a Boolean */
     recoveryAmount = recoveryAmount - 1
     true
   }
 
-  /** Change the objective of the character
-   * @param 1 if wants to change it 0 if not
-   * */
 
-  def changeObjective(n: Int): Unit = {
-    if (n == 1){
-      if (objective == "Stars"){
-        objective = "Victories"
-      }
-      else{
-        objective = "Stars"
-      }
-    }
-  }
 }
+
+

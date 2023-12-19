@@ -18,11 +18,17 @@ import scala.collection.mutable.ArrayBuffer
 trait Panel {
 
   /** Array of the characters currently positioned on this panel.
-    *
-    * In the game, multiple characters might be on the same panel at once, e.g., if multiple players
-    * land on the same space.
-    */
-  val characters: ArrayBuffer[PlayerCharacter]
+   *
+   * In the game, multiple characters might be on the same panel at once, e.g., if multiple players
+   * land on the same space.
+   */
+  private var _characters: ArrayBuffer[PlayerCharacter]
+
+  /** Getter for the characters property */
+  def characters: Seq[PlayerCharacter]
+
+  /** Setter for the characters property */
+  def characters_=(newCharacters: Seq[PlayerCharacter]): Unit
 
   /** An array of panels that are directly connected to this one.
    *
@@ -31,21 +37,27 @@ trait Panel {
    *
    * @return a List of Panel instances that are adjacent or connected to this panel.
    */
-  var nextPanels: ArrayBuffer[Panel]
+  private var _nextPanels: ArrayBuffer[Panel]
+
+  /** Getter for the nextPanels property */
+  def nextPanels: Seq[Panel]
+
+  /** Setter for the nextPanels property */
+  def nextPanels_=(newNextPanels: Seq[Panel]): Unit
 
   /** Adds a character to the list of characters currently on this panel.
-    *
-    * This might be invoked when a player moves to this panel or starts their turn on it.
-    *
-    * @param player The player character to add to this panel.
-    */
+   *
+   * This might be invoked when a player moves to this panel or starts their turn on it.
+   *
+   * @param player The player character to add to this panel.
+   */
   def addCharacter(player: PlayerCharacter): Unit
 
   /** Removes a character from the list of characters currently on this panel.
-    *
-    * This might be invoked when a player moves off this panel.
-    *
-    * @param player The player character to remove from this panel.
-    */
+   *
+   * This might be invoked when a player moves off this panel.
+   *
+   * @param player The player character to remove from this panel.
+   */
   def removeCharacter(player: PlayerCharacter): Unit
 }

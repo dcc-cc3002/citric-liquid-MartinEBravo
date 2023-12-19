@@ -22,18 +22,33 @@ import scala.collection.mutable.ArrayBuffer
  *
  *  */
 abstract class APanel extends Panel {
-  val characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
-  var nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
+
+  private var _characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
+  private var _nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
+
+  /** Return the characters in the buffer */
+  def characters: Seq[PlayerCharacter] = _characters
+
+  /** Set the characters in the buffer */
+  def characters_=(newCharacters: Seq[PlayerCharacter]): Unit = {
+    _characters = ArrayBuffer.from(newCharacters)
+  }
 
   /** Add a new character to the buffer */
   def addCharacter(player: PlayerCharacter): Unit = {
-    characters += player
+    _characters += player
   }
 
   /** Delete a character from the buffer */
   def removeCharacter(player: PlayerCharacter): Unit = {
-    if (!characters.isEmpty) {
-      characters -= player
-    }
+    _characters -= player
+  }
+
+  /** Return the next panels */
+  def nextPanels: Seq[Panel] = _nextPanels
+
+  /** Set the next panels */
+  def nextPanels_=(newNextPanels: Seq[Panel]): Unit = {
+    _nextPanels = ArrayBuffer.from(newNextPanels)
   }
 }

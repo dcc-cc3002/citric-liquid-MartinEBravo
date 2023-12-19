@@ -26,7 +26,10 @@ import scala.collection.mutable.ArrayBuffer
  * @author [[https://github.com/MartinEBravo/ Martín E. Bravo]]
  *
  *  */
-class HomePanel(val owner: PlayerCharacter) extends APanel {
+class HomePanel(private val _owner: PlayerCharacter) extends APanel {
+
+  /** Get the owner of the panel */
+  def owner: PlayerCharacter = _owner
 
   /** Activation of the panel depending on the player */
   def activate(player: PlayerCharacter): Unit = {
