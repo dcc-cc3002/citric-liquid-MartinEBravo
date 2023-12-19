@@ -12,31 +12,122 @@ Indique de qué trait extiende cada clase.
 
 Escriba los traits que considere necesarios para modelar el problema.
 
-Por ejemplo
+### Unidad
 
-### Vehicle
+- val HitPoints_max: Int
+- var HitPoints: Int
+- val ATK: Int
+- val DEF: Int
+- val EVA: Int
+- def isAlive(HP: Int): Boolean
 
-- `def startEngine(): Unit`
-- `def stopEngine(): Unit`
-- `var engineOn: Boolean`
-- `var speed: Double`
-- `val maxSpeed: Double`
+#### Personaje extends Unidad
+
+- val HitPoints_max: Int
+- var HitPoints: Int
+- val ATK: Int
+- val DEF: Int
+- val EVA: Int
+- def isAlive(HP: Int): Boolean
+- val stars: Int
+- def beginTourn(Chapters: Int): Unit
+- val victories: Int
+- def battle(Enemy: Unidad): Unit
+- def recovery(): Unit
+- val recoveryAmount: Int
+- def endTourn(): Unit # Se va disminuyendo la recoveryAmount
+
+#### Wild Unit extends Unidad
+
+- val HitPoints_max: Int
+- var HitPoints: Int
+- val ATK: Int
+- val DEF: Int
+- val EVA: Int
+- def isAlive(HP: Int): Boolean
+- def playerDefeat(player: Personaje): Unit
+
+### Norma
+- val stars: Int
+- val victories: int
+- def normaCheck(): Unit
+- def normaClear(): Unit
+
+### Paneles
+- val panelName: String
+- val panelType: String 
+- var players: int
+- val nextPanel: Panel
+- def neutralPanel(): Unit
+- def homePanel(): Unit
+- def bonusPanel(): Unit
+- def dropPanel(): Unit
+- def encounterPanel(): Unit
 
 ## 2. Clases
 
 Escriba las clases que considere necesarias para modelar el problema.
 
-Por ejemplo
+### Player extends Personaje
+- val HitPoints_max: Int
+- var HitPoints: Int
+- val ATK: Int
+- val DEF: Int
+- val EVA: Int
+- def isAlive(HP: Int): Boolean
+- val stars: Int
+- def beginTourn(Chapters: Int): Unit
+- val victories: Int
+- def battle(Enemy: Unidad): Unit
+- def recovery(): Unit
+- val recoveryAmount: Int
+- def endTourn(): Unit # Se va disminuyendo la recoveryAmount
+- val playerNumber: Int
 
-### Car extends Vehicle
+### Chiken extends Wild Unit
+- val HitPoints_max: Int
+- var HitPoints: Int
+- val ATK: Int
+- val DEF: Int
+- val EVA: Int
+- def isAlive(HP: Int): Boolean
+- def playerDefeat(player: Personaje): Unit
 
-- `def startEngine(): Unit`
-- `def stopEngine(): Unit`
-- `var engineOn: Boolean`
-- `var speed: Double`
-- `val maxSpeed: Double`
-- `var doorsOpen: Boolean`
-- `def openDoors(): Unit`
+### Robo ball extends Wild Unit
+- val HitPoints_max: Int
+- var HitPoints: Int
+- val ATK: Int
+- val DEF: Int
+- val EVA: Int
+- def isAlive(HP: Int): Boolean
+- def playerDefeat(player: Personaje): Unit
+
+### Seagull extends Wild Unit
+- val HitPoints_max: Int
+- var HitPoints: Int
+- val ATK: Int
+- val DEF: Int
+- val EVA: Int
+- def isAlive(HP: Int): Boolean
+- def playerDefeat(player: Personaje): Unit
+
+### NormaX extends Norma
+- val stars: Int
+- val victories: int
+- def normaCheck(): Unit
+- def normaClear(): Unit
+
+### Tablero extends Paneles
+- val panelName: String
+- val panelType: String 
+- var players: int
+- val nextPanel: Panel
+- def neutralPanel(): Unit
+- def homePanel(): Unit
+- def bonusPanel(): Unit
+- def dropPanel(): Unit
+- def encounterPanel(): Unit
+- val tablero: Array[Panel]
 
 ## Entrega
 
