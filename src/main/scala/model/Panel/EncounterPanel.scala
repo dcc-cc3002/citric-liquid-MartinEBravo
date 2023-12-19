@@ -1,5 +1,11 @@
 package cl.uchile.dcc.citric
-package model
+package model.Panel
+
+import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
+import scala.collection.mutable.ArrayBuffer
+import scala.util.Random
+
+
 /** The `EncounterPanel` represents the class of the encounter panels,
  * We have many variables like the characters and the next panels, each one composed of
  * Arrays of multiples entities.
@@ -12,7 +18,6 @@ package model
  *
  *  - start a battle
  *
- *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]
@@ -21,22 +26,11 @@ package model
  *
  *  */
 class EncounterPanel extends APanel{
-  var characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
-  var nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
-  /** Add a new character to the buffer */
-  def addCharacter(player: PlayerCharacter): Unit = {
-    characters += player
-  }
-  /** Delete a character from the buffer */
-  def removeCharacter(player: PlayerCharacter): Unit = {
-    if (characters.isEmpty) {
-      println("There are no characters to remove")
-    } else {
-      characters -= player
-    }
-  }
+
   /** Start a battle with a random Wild Unit */
   def battle(player: PlayerCharacter): Unit = {
-    // player.battle(Random(ArrayBuffer[WildUnit]))
+    /** Here the battle will be implemented in the following versions */
+    /** for now just downgrade the HP simulating a fight*/
+    player.HP = player.HP - 1
   }
 }

@@ -1,5 +1,9 @@
 package cl.uchile.dcc.citric
-package model
+package model.Panel
+
+import cl.uchile.dcc.citric.model.Unities.PlayerCharacter
+import scala.collection.mutable.ArrayBuffer
+
 
 /** The `DropPanel` represents the class of the drop panels,
  * We have many variables like the characters and the next panels, each one composed of
@@ -13,7 +17,6 @@ package model
  *
  *  - take points from the characters
  *
- *
  * @author [[https://github.com/danielRamirezL/ Daniel Ramírez L.]]
  * @author [[https://github.com/joelriquelme/ Joel Riquelme P.]]
  * @author [[https://github.com/r8vnhill/ Ignacio Slater M.]]
@@ -23,27 +26,13 @@ package model
  *  */
 
 class DropPanel extends APanel {
-  var characters: ArrayBuffer[PlayerCharacter] = ArrayBuffer.empty
-  var nextPanels: ArrayBuffer[Panel] = ArrayBuffer.empty
 
-  /** Add a new character to the buffer */
-
-  def addCharacter(player: PlayerCharacter): Unit = {
-    characters += player
-  }
-
-  /** Delete a character from the buffer */
-
-  def removeCharacter(player: PlayerCharacter): Unit = {
-    if (characters.isEmpty) {
-      println("There are no characters to remove")
-    } else {
-      characters -= player
-    }
-  }
   /** Take stars from the characters */
   def bonus(player: PlayerCharacter): Unit = {
-    roll = player.rollDice()
-    // player.stars -= roll*Norma
+    val roll: Int = player.rollDice()
+    val Norm: Int = player.Norma.name
+    // player.stars = player.stars - roll*Norm
+    /** As we are not focusing on implementation i am just gonna add 1 */
+    player.stars = player.stars + 1
   }
 }
